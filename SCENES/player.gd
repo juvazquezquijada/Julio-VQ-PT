@@ -7,6 +7,7 @@ func _process(delta):
 	var velocity = Vector2.ZERO
 	
 	
+	
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 		print_debug("player moved up")
@@ -24,3 +25,7 @@ func _process(delta):
 		velocity = velocity.normalized() * speed
 	
 	position += velocity * delta
+
+
+func _on_body_entered(body):
+	hide()
