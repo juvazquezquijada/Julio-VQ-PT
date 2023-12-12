@@ -1,7 +1,43 @@
 [gd_scene load_steps=4 format=3 uid="uid://gmxi42qylln7"]
 
-[ext_resource type="Script" path="res://SCENES/player.gd" id="1_l6sbk"]
 [ext_resource type="Texture2D" uid="uid://dhbv6eyh45c07" path="res://icon.svg" id="2_o48ik"]
+
+[sub_resource type="GDScript" id="GDScript_ff45r"]
+script/source = "extends Area2D
+@onready var bgmusic = $\"../BGMusic\"
+@export var speed = 400
+@onready var enemyHit = $\"../EnemyHit\"
+
+# Called when the node enters the scene tree for the first time.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var velocity = Vector2.ZERO
+	
+	if Input.is_action_pressed(\"move_up\"):
+		velocity.y -= 1
+		print_debug(\"player moved up\")
+	if Input.is_action_pressed(\"move_down\"):
+		velocity.y += 1
+		print_debug(\"player moved down\")
+	if Input.is_action_pressed(\"move_left\"):
+		velocity.x -= 1
+		print_debug(\"player moved left\")
+	if Input.is_action_pressed(\"move_right\"):
+		velocity.x += 1
+		print_debug(\"player moved right\")
+	
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
+	
+	position += velocity * delta
+
+
+func _on_body_entered(body):
+	enemyHit.play()
+	bgmusic.stop()
+	hide()
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66cqt"]
 size = Vector2(127, 127)
@@ -9,7 +45,7 @@ size = Vector2(127, 127)
 [node name="PLAYER" type="Area2D"]
 position = Vector2(-5, -1)
 scale = Vector2(1.09838, 0.975897)
-script = ExtResource("1_l6sbk")
+script = SubResource("GDScript_ff45r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.00012207, -1.02469)
@@ -17,7 +53,6 @@ texture = ExtResource("2_o48ik")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_66cqt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

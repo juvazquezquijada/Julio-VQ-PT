@@ -1,7 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1702410167
+::res://::1702414506
 bg_music.mp3::AudioStreamMP3::7740025162993226110::1702401875::1702401875::1::::<><>::
 enemy.png::CompressedTexture2D::5591272491634969294::1702401875::1702401876::1::::<><>::
 enemy_hit.mp3::AudioStreamMP3::1957515573300041468::1702401875::1702401875::1::::<><>::
 icon.svg::CompressedTexture2D::7653978998285427738::1702401692::1702401696::1::::<><>::
 README.md::TextFile::-1::1702410167::0::1::::<><>::
+::res://SCENES/::1702414416
+ENEMY.tscn::PackedScene::2426161093639544065::1702413944::0::1::::<><>::uid://clwpo83yorvtm::::res://enemy.png
+PLAYER.tscn::PackedScene::447317937708137246::1702414416::0::1::::<><>::uid://dhbv6eyh45c07::::res://icon.svg
+world.tscn::PackedScene::2276761410175015950::1702414087::0::1::::<><>::uid://gmxi42qylln7::::res://SCENES/PLAYER.tscn<>uid://batirvw1rr5qr::::res://SCENES/ENEMY.tscn<>uid://25h8317w24nw::::res://enemy_hit.mp3
